@@ -38,7 +38,6 @@ const Login = () => {
         <label className='container__email__label' htmlFor='email'>
           Seu e-mail
         </label>
-        {email}
         <input
           className='container__email__input'
           type='email'
@@ -53,7 +52,6 @@ const Login = () => {
         <label className='container__senha__label' htmlFor='senha'>
           Senha
         </label>
-        {senha}
         <input
           className='container__senha__input'
           type='password'
