@@ -1,16 +1,32 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import "./styles.css";
-// import { useMutation } from "@apollo/client";
-// import { SIGN_IN } from "./../../../../graphql/queries";
-// import { Singn } from "./../../../../types/sign-in";
+import { useMutation } from "@apollo/client";
+import { SIGN_IN } from "./../../../../graphql/queries";
+import { Singn } from "./../../../../types/sign-in";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  // const [data, loading, error] = useMutation<Singn>(SIGN_IN);
+  const [loginClient, { data, loading, error }] = useMutation<Singn>(SIGN_IN);
+
+  if (loading) return "Submitting...";
+  if (error) return `Submission error! ${error.message}`;
+
+  const clearDatas = () => {
+    setEmail("");
+    setSenha("");
+  };
+
+  useEffect(() => {
+    if (data) navigate("/dashboard");
+  }, [data]);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
+    loginClient({ variables: { input: { email, senha } } });
+    clearDatas();
   };
 
   return (
@@ -25,7 +41,7 @@ const Login = () => {
         {email}
         <input
           className='container__email__input'
-          type='password'
+          type='email'
           name='email'
           id='email'
           placeholder='exemplo@email.com'
