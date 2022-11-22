@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./styles.css";
-import { useMutation } from "@apollo/client";
-import { SIGN_IN } from "./../../../../graphql/queries";
-import { Singn } from "./../../../../types/sign-in";
+// import { useMutation } from "@apollo/client";
+// import { SIGN_IN } from "./../../../../graphql/queries";
+// import { Singn } from "./../../../../types/sign-in";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [data, loading, error] = useMutation<Singn>(SIGN_IN);
+  // const [data, loading, error] = useMutation<Singn>(SIGN_IN);
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
@@ -22,6 +22,7 @@ const Login = () => {
         <label className='container__email__label' htmlFor='email'>
           Seu e-mail
         </label>
+        {email}
         <input
           className='container__email__input'
           type='password'
@@ -36,6 +37,7 @@ const Login = () => {
         <label className='container__senha__label' htmlFor='senha'>
           Senha
         </label>
+        {senha}
         <input
           className='container__senha__input'
           type='password'
