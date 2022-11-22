@@ -1,0 +1,25 @@
+.container__header {
+  min-height: 4rem;
+  background-color: #17092c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4rem;
+}
+
+.container__header__title {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 1.5rem;
+  line-height: 2rem;
+
+  color: #ffffff;
+  margin: 0;
+}
+
+.container__header__title::after {
+  content: "Store";
+  color: #52b45b;
+  margin-left: 0.5rem;
+}
