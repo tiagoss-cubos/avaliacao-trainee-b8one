@@ -4,6 +4,6 @@ export type Singn = {
     user: {
       name: string;
       image: string;
-    }[];
+    };
   };
 };
