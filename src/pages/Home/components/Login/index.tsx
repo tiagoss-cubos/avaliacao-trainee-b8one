@@ -1,8 +1,20 @@
+import { useState } from "react";
 import "./styles.css";
+import { useMutation } from "@apollo/client";
+import { SIGN_IN } from "./../../../../graphql/queries";
+import { Singn } from "./../../../../types/sign-in";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [senha, setSenha] = useState("");
+  const [data, loading, error] = useMutation<Singn>(SIGN_IN);
+
+  const handleSubmit = (event: any) => {
+    event.preventDefault();
+  };
+
   return (
-    <div className='container__login'>
+    <form onSubmit={handleSubmit} className='container__login'>
       <h2 className='container__login__title'>
         Olá, entre com e-mail e senha.
       </h2>
@@ -16,6 +28,8 @@ const Login = () => {
           name='email'
           id='email'
           placeholder='exemplo@email.com'
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
         />
       </div>
       <div className='container__senha'>
@@ -28,6 +42,8 @@ const Login = () => {
           name='senha'
           id='senha'
           placeholder='Digite sua senha'
+          value={senha}
+          onChange={(event) => setSenha(event.target.value)}
         />
       </div>
       <div className='container__checkbox'>
@@ -45,7 +61,7 @@ const Login = () => {
         <button className='container__button__send'>Entrar</button>
       </div>
       <p className='container__login__footer'>Não possui conta? Cadastre-se!</p>
-    </div>
+    </form>
   );
 };
 
